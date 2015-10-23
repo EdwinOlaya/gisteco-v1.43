@@ -1,0 +1,22 @@
+PARA EL 15/09/2015
+
+
+
+f_getmaterial_caja_agua(bigint)	postgres		
+f_getmaterial_caja_desague(bigint)	postgres		
+f_getmaterial_conexionagua(bigint)	postgres		
+f_getmaterial_conexiondesa(bigint)	postgres		
+f_getmaterial_marco_tapa_agua(bigint)	postgres		
+f_getmaterial_marco_tapa_desa(bigint)	postgres
+
+select * from sp_ca_getconagua(10164337)
+
+cod catastral
+sublote
+ciclo
+ciudad
+dirección (urbanización, dirección, mz. lote)
+nombre
+dni
+ruc
+telefono

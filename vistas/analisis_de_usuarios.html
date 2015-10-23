@@ -1,0 +1,85 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var teclas_especiales = [8,13];
+
+	$("#form-analisis-usuarios .prov-select").change(function(){
+		var selected = $(this).val();
+
+		$.ajax({
+			url: "/getDistritosFromProvincia",
+			data: {id_provincia:selected},
+			success: function (data){
+				$("#form-analisis-usuarios .dist-select").html(data);
+			}
+		});
+	});
+
+	$("#form-analisis-usuarios .numeric").keypress(function(evt){		
+		var key = evt.which || window.event.keyCode;
+
+		if(teclas_especiales.indexOf(key) == -1){			
+			return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+		}
+
+		if(key == 13){analisisUsuariosCall();}
+	});
+
+	$("#form-analisis-usuarios .text").keypress(function(evt){
+		var key = evt.which || window.event.keyCode;
+		//console.log("código de tecla presionada: "+key+" caracter: "+String.fromCharCode(key));//ELIMINAR
+		if(teclas_especiales.indexOf(key) == -1){
+			return DATA_PARSER.textInputValidation(String.fromCharCode(key));
+		}
+
+		if(key == 13){
+			analisisUsuariosCall();
+		}
+	});
+
+	$("#analisis-clientes-btn").click(function(){
+		analisisUsuariosCall();
+	});
+});
+
+function analisisUsuariosCall(){
+	CATASTRO.realizarAnalisisDeUsuarios($("#form-analisis-usuarios .prov-select").val(),
+			$("#form-analisis-usuarios .dist-select").val(),
+			$("#form-analisis-usuarios .nombre-cliente-input").val(),
+			$("#form-analisis-usuarios .nro-inscr-input").val(),
+			$("#form-analisis-usuarios input[name='filtro']:checked").val());
+}
+
+</script>
+
+<div class = "modal-header">
+	<h4 class = "modal-title">Análisis de usuarios</h4>
+</div>
+<div class = "modal-body">
+	<form action = "/analisisUsuariosHtml" method = "POST" target = "_blank" id = "form-analisis-usuarios">
+		<div>		
+			<label>Provincia:</label>
+			<select name = "id_provincia" class = 'prov-select'>
+				<option value = '0'>TODAS</option>
+				<option value = '1'>PIURA</option>
+				<option value = '4'>MORROPON</option>
+				<option value = '5'>PAITA</option>
+				<option value = '6'>SULLANA</option>
+				<option value = '7'>TALARA</option>
+			</select>
+			<label>Distrito:</label>
+			<select name = "id_distrito" class = 'dist-select'>
+				<option value = '0'>TODOS</option>
+			</select>		
+			<label><input type = 'radio' name = 'filtro' value = '0' class = 'nombre_opt' checked> <span>Nombre:</span></label>
+			<input type = 'text' name = "nombre_titular" class = 'nombre-cliente-input text'>
+			<label><input type = 'radio' name = 'filtro' value = '1' class = 'suministro_opt'> <span>Nro. de inscripción:</span></label>
+			<input type = 'text' name = "nro_suministro" class = 'nro-inscr-input numeric'>
+		</div>		
+	</form>
+	<div class = 'msj'></div>
+</div>
+<div class = "modal-footer">
+	<input type = "button" value = "Buscar" id = "analisis-clientes-btn" class = 'myButton'>
+	<input type = "button" value = "Cancelar" data-dismiss = "modal" class = 'myButton'>
+</div>

@@ -1,0 +1,18 @@
+{% set fin = inicio+itemsxpag %}
+
+{% if fin > datos.length %}
+	{% set fin = datos.length %}
+{% endif %}
+
+{%  for i in range(inicio,fin) %}
+<tr class = 'fila'>
+	<th class = 'num-item primero'><span>N° Item</span>{{i+1}}</th>		
+	<th><span>Fecha</span>{{datos[i].fecha}}</th>
+	<th><span>Nro. Serie</span>{{datos[i].id_anexo}}</th>
+	<th><span>Operación</span>{{datos[i].concepto_cuenta}}</th>
+	<th><span>Estado</span>{{datos[i].estado_anexo}}</th>
+	<th><span>Cargo</span>{{datos[i].cargo}}</th>
+	<th><span>Abono</span>{{datos[i].abono}}</th>
+	<th><span>Saldo</span>{{datos[i].saldo}}</th>
+</tr>
+{% endfor %}

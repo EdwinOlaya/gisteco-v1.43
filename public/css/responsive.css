@@ -1,0 +1,80 @@
+/*TABLA RESPONSIVE*/
+
+.responsive-table{
+	font-size: 13px;
+	width: 100%;		
+}
+.responsive-table .captions{
+	background: #4B8CE7;
+	color: #fff;
+}
+.responsive-table .fila th{
+	font-weight: normal;
+}
+.responsive-table .fila span{
+	display: none;
+}
+.responsive-table .fila a{
+	cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {  	  
+   	.responsive-table, 
+   	.responsive-table thead,
+   	.responsive-table tbody,
+	.responsive-table th, 		
+	.responsive-table tr{
+		padding: 0px;
+		margin: 0px;
+		display: inline-block;
+		width: 100%;
+	}			
+	.responsive-table .captions{
+		display: none;			
+	}		
+	.responsive-table .fila th{		
+		width: 100%;
+		padding: 5px 0px;
+	}
+	.responsive-table .fila span{
+		display: inline-block;
+		float: left;
+		margin-right: 15px;
+		font-weight: bold;
+	}
+	.responsive-table .fila .primero{
+		background: #4B8CE7;
+		color: #fff;
+	}    	
+}
+/*FIN TABLA RESPONSIVE*/
+
+
+/*PAGINACION RESPONSIVE*/
+
+.responsive-pagination{
+	text-align: center;
+}
+.responsive-pagination .pagination{
+	margin: 0px;
+	vertical-align: middle;
+}
+.responsive-pagination nav p{
+	margin: 5px 0px;
+}
+.responsive-pagination nav .num-pag{
+	width: 40px;
+}
+.responsive-pagination nav > span{
+	vertical-align: middle;
+}
+
+/*FIN PAGINACION RESPONSIVE*/
+
+.loading-div{
+	text-align: center;
+}
+.glyphicon{
+	float: right;
+	margin-right: 10px;
+}

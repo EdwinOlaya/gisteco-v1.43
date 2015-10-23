@@ -1,0 +1,220 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	//CONFIGURACIONES PARA EL DATEPICKER
+	$.datepicker.regional.es = {
+		closeText: "Cerrar",
+		prevText: "&#x3C;Ant",
+		nextText: "Sig&#x3E;",
+		currentText: "Hoy",
+		monthNames: [ "enero","febrero","marzo","abril","mayo","junio",
+		"julio","agosto","septiembre","octubre","noviembre","diciembre" ],
+		monthNamesShort: [ "ene","feb","mar","abr","may","jun",
+		"jul","ago","sep","oct","nov","dic" ],
+		dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
+		dayNamesShort: [ "dom","lun","mar","mié","jue","vie","sáb" ],
+		dayNamesMin: [ "D","L","M","M","J","V","S" ],
+		weekHeader: "Sm",
+		dateFormat: "yy-mm-dd",
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: "" 
+	};
+	$.datepicker.setDefaults( $.datepicker.regional[ "es" ]);
+	$(".fechai-agua").datepicker({			
+		autoSize: true,
+		changeMonth: true,
+    	changeYear: true,
+		onSelect: function(date){
+			var min_date = new Date(date);
+			min_date.setDate(min_date.getDate()+2);
+			$(".fechaf-agua").datepicker("option","minDate",min_date);
+		}
+	});
+	$(".fechaf-agua").datepicker({
+		changeMonth: true,
+    	changeYear: true,
+    	autoSize: true      		
+	});
+	$(".fechai-desa").datepicker({			
+		changeMonth: true,
+    	changeYear: true,
+    	autoSize: true,
+		onSelect: function(date){
+			var min_date = new Date(date);
+			min_date.setDate(min_date.getDate()+2);
+			$(".fechaf-desa").datepicker("option","minDate",min_date);
+		}
+	});
+	$(".fechaf-desa").datepicker({			
+		changeMonth: true,
+    	changeYear: true,
+    	autoSize: true
+	});
+
+	//FIN DATEPICKER
+
+	var teclas_especiales = [8,13];
+	$("#form-analisis-conexion .prov-select").change(function(){
+		var selected = $(this).val();
+			$.ajax({
+			url: "/getDistritosFromProvincia",
+		data: {id_provincia:selected},
+			success: function (data){
+				$("#form-analisis-conexion .dist-select").html(data);
+			}
+		});
+	});	
+
+	$("#analisis-conexion-btn").click(function(){
+		analisisConexionCall();
+	});	
+});
+
+function analisisConexionCall(){
+	CATASTRO.realizarAnalisisDeConexion($("#form-analisis-conexion .prov-select").val(),
+		$("#form-analisis-conexion .dist-select").val(),
+		$("#form-analisis-conexion .diameagua-select").val(),
+		$("#form-analisis-conexion .mateagua-select").val(),
+		$("#form-analisis-conexion .sitagua-select").val(),
+		$("#form-analisis-conexion .fechai-agua").val(),
+		$("#form-analisis-conexion .fechaf-agua").val(),
+		$("#form-analisis-conexion .diamedesa-select").val(),
+		$("#form-analisis-conexion .matedesa-select").val(),
+		$("#form-analisis-conexion .sitdesa-select").val(),
+		$("#form-analisis-conexion .fechai-desa").val(),
+		$("#form-analisis-conexion .fechaf-desa").val()
+		);
+}
+</script>
+
+<div class = "modal-header">
+	<h4 class = "modal-title">Análisis de conexión</h4>
+</div>
+<div class = "modal-body">
+	<form action = "/analisisConexionHtml" method = "POST" target = "_blank" id = "form-analisis-conexion">
+		<div>
+			<div>
+				<div class = 'izq'>
+					<label>Provincia:</label>
+					<select name = "id_provincia" class = 'prov-select'>
+						<option value = '0'>TODAS</option>
+						<option value = '1'>PIURA</option>
+						<option value = '4'>MORROPON</option>
+						<option value = '5'>PAITA</option>
+						<option value = '6'>SULLANA</option>
+						<option value = '7'>TALARA</option>
+					</select>
+				</div>
+				<div class = 'der'>
+					<label>Distrito:</label>
+					<select name = "id_distrito" class = 'dist-select'>
+						<option value = '0'>TODOS</option>
+					</select>
+				</div>
+			</div>
+			<div>
+				<div class = 'izq'>
+					<h4>Conexión Agua</h4>
+					<label>Diámetro:</label>
+					<select name = "id_diametro_conagua" class = 'diameagua-select'>
+						<option value = '0'>Elija una opción</option>
+						<option value = '1'>1/2 "</option>
+						<option value = '2'>3/4 "</option>
+						<option value = '3'>1 "</option>
+						<option value = '4'>1 1/2 "</option>
+						<option value = '5'>2 "</option>
+						<option value = '6'>3 "</option>
+						<option value = '7'>4 "</option>
+						<option value = '8'>6 "</option>
+						<option value = '9'>8 "</option>
+						<option value = '10'>10 "</option>
+						<option value = '11'>12 "</option>
+						<option value = '90'>NO TIENE</option>
+						<option value = '91'>DESCONOCIDO</option>
+					</select>
+					<label>Material</label>
+					<select name = "id_material_conagua" class = 'mateagua-select'>
+						<option value = '0'>Elija una opción</option>
+						<option value = '1'>F.G.</option>
+						<option value = '2'>P.V.C.</option>
+						<option value = '3'>PLOMO</option>
+						<option value = '4'>C.S.N.</option>
+						<option value = '5'>CONCRETO</option>
+						<option value = '6'>METAL.</option>
+						<option value = '7'>LADRILLO</option>
+						<option value = '8'>OTROS</option>
+						<option value = '9'>TERMOPLAST</option>
+					</select>
+					<label>Estado</label>
+					<select name = "id_situacion_conagua" class = 'sitagua-select'>
+						<option value = '0'>Elija una opción</option>
+						<option value = '1'>ACTIVA</option>
+						<option value = '2'>CORTADA</option>
+						<option value = '3'>CLAUSURADA</option>
+						<option value = '4'>LEVANTADA</option>
+					</select>
+					<label>Fecha Instalación</label>
+					<div>
+						<span>Desde </span><input type = "text" name = "fechai_conagua" class = 'fechai-agua'>
+					</div>
+					<div>
+						<span>Hasta </span><input type = "text" name = "fechaf_conagua" class = 'fechaf-agua'>
+					</div>
+				</div>
+				<div class = 'der'>
+					<h4>Conexión Desague</h4>
+					<label>Diámetro:</label>
+					<select name = "id_diametro_codesa" class = 'diamedesa-select'>
+						<option value = '0'>Elija una opción</option>
+						<option value = '1'>4 "</option>
+						<option value = '2'>6 "</option>
+						<option value = '3'>8 "</option>
+						<option value = '4'>10 "</option>
+						<option value = '5'>12 "</option>
+						<option value = '6'>14 "</option>
+						<option value = '7'>15 "</option>
+						<option value = '8'>20 "</option>
+						<option value = '9'>25 "</option>
+						<option value = '90'>NO TIENE</option>
+						<option value = '91'>DESCONOCIDO</option>
+					</select>
+					<label>Material</label>
+					<select name = "id_material_codesa" class = 'matedesa-select'>
+						<option value = '0'>Elija una opción</option>
+						<option value = '1'>F.G.</option>
+						<option value = '2'>P.V.C.</option>
+						<option value = '3'>PLOMO</option>
+						<option value = '4'>C.S.N.</option>
+						<option value = '5'>CONCRETO</option>
+						<option value = '6'>METAL.</option>
+						<option value = '7'>LADRILLO</option>
+						<option value = '8'>OTROS</option>
+						<option value = '9'>TERMOPLAST</option>
+					</select>
+					<label>Estado</label>
+					<select name = "id_situacion_codesa" class = 'sitdesa-select'>
+						<option value = '0'>Elija una opción</option>
+						<option value = '1'>ACTIVA</option>
+						<option value = '2'>CORTADA</option>
+						<option value = '3'>CLAUSURADA</option>
+						<option value = '4'>LEVANTADA</option>
+					</select>
+					<label>Fecha Alta</label>
+					<div>
+						<span>Desde </span><input type = "text" name = "fechai_codesa" class = 'fechai-desa'>
+					</div>
+					<div>
+						<span>Hasta </span><input type = "text" name = "fechaf_codesa" class = 'fechaf-desa'>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class = 'msj'></div>
+</div>
+<div class = "modal-footer">
+	<input type = "button" value = "Consultar" id = "analisis-conexion-btn" class = 'myButton'>
+	<input type = "button" value = "Cancelar" data-dismiss = "modal" class = 'myButton'>
+</div>

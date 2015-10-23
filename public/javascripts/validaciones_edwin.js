@@ -1,0 +1,4 @@
+
+function valida_dni(){
+	
+}

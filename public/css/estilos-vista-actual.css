@@ -1,0 +1,30 @@
+*{
+	margin: 0px;
+	padding: 0px;	
+}
+
+header, section, footer, aside, nav, article,div{				
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;		
+}
+
+.pagination{
+	margin: 0px;
+	vertical-align: middle;
+}
+.content{
+	text-align: center;
+}
+.content p{
+	margin: 5px 0px;
+}
+.content .num-pag{
+	width: 40px;	
+	margin:auto 0px;
+}
+.content span{
+	vertical-align: middle;
+}

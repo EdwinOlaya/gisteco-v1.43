@@ -1,0 +1,141 @@
+<html>
+<head>
+	<meta charset = "UTF-8">
+    <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<title></title>	
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="javascripts/jquery-ui-1.11.4/jquery-ui.min.css"><!-- jquery UI-->
+    <script type="text/javascript" src = "javascripts/jquery-1.11.2.js"></script> <!-- jquery -->
+    <script type="text/javascript" src = "javascripts/jquery-ui-1.11.4/jquery-ui.min.js"></script><!-- jquery UI-->
+	<link rel="stylesheet" type = "text/css" href="javascripts/bootstrap-3.3.5-dist/css/bootstrap.min.css"> <!-- Boostrap -->
+	<script type = "text/javascript" src="javascripts/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> <!-- Boostrap -->    
+    <script type="text/javascript" src = "javascripts/nunjucks.js"></script> <!-- nunjucks -->
+    <link rel="stylesheet" type="text/css" href="css/estilos-ficha-catastral-piura.css">
+    <script type="text/javascript" src = "javascripts/filtros.js"></script> <!-- nunjucks -->
+    <script type="text/javascript" src = "javascripts/utilidades.js"></script> <!-- Utilidades -->    
+    <script type="text/javascript" src = "javascripts/validadorDatos.js"></script> <!-- Utilidades -->   
+    <script type="text/javascript" src = "javascripts/paginacion-funciones.js"></script> <!-- paginación -->
+	<script type="text/javascript" src = "javascripts/ficha-catastral-piura.js"></script>
+    <script type="text/javascript" src = "javascripts/ficha-catastral-piura-funciones.js"></script>    
+      
+</head>
+<body>
+
+<div id = "main-container">
+    <header>
+        <img src = "images/logo.jpg">        
+    </header>
+	<!-- Nav tabs -->
+  	<nav class="navbar navbar-default" role="tablist navigation" id = "clienteTabs">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">               
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Menú</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">               
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catastro <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#datos-basicos-ficha-cat" aria-controls="datos-basicos-ficha-cat" role="tab" data-toggle="tab">Datos básicos</a></li>
+                    <li><a href="#datos-propiedad-ficha-cat" aria-controls="datos-propiedad-ficha-cat" role="tab" data-toggle="tab">Datos de la propiedad</a></li>
+                    <li><a href="#conexion-agua-ficha-cat" aria-controls="conexion-agua-ficha-cat" role="tab" data-toggle="tab">Conexión agua</a></li>                  
+                    <li><a href="#conexion-desague-ficha-cat" aria-controls="conexion-desague-ficha-cat" role="tab" data-toggle="tab">Conexión desague</a></li>
+                    <li><a href="#valores-min-admisibles-ficha-cat" aria-controls="valores-min-admisibles-ficha-cat" role="tab" data-toggle="tab">Valores mínimo admisibles</a></li>
+                    <li><a href="#datos-complementarios-ficha-cat" aria-controls="datos-complementarios-ficha-cat" role="tab" data-toggle="tab">Datos complementarios</a></li>
+                    <li><a href="#info-geo-loc-ficha-cat" aria-controls="info-geo-loc-ficha-cat" role="tab" data-toggle="tab">Información geográfica</a></li>
+                    <li><a href="#croquis-ficha-cat" aria-controls="croquis-ficha-cat" role="tab" data-toggle="tab">Croquis</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sisgeco <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#datos-basicos-sisgeco" aria-controls="datos-basicos-sisgeco" role="tab" data-toggle="tab">Datos básicos</a></li>
+                    <li><a href="#datos-propiedad-sisgeco" aria-controls="datos-propiedad-sisgeco" role="tab" data-toggle="tab">Datos de la propiedad</a></li>
+                    <li><a href="#datos-medidor-sisgeco" aria-controls="datos-medidor-sisgeco" role="tab" data-toggle="tab">Medidor</a></li>
+                    <li><a href="#conexion-agua-sisgeco" aria-controls="conexion-agua-sisgeco" role="tab" data-toggle="tab">Conexión agua</a></li>
+                    <li><a href="#conexion-desague-sisgeco" aria-controls="conexion-desague-sisgeco" role="tab" data-toggle="tab">Conexión desague</a></li>
+                    <li><a href="#datos-complementarios-sisgeco" aria-controls="datos-complementarios-sisgeco" role="tab" data-toggle="tab">Datos complementarios</a></li>                    
+                  </ul>
+                </li>               
+                <li><a href="#facturacion-cliente" aria-controls="facturacion-cliente" role="tab" data-toggle="tab">Facturación</a></li>
+                <li><a href="#cuenta-corriente" aria-controls="cuenta-corriente" role="tab" data-toggle="tab">Cuenta corriente</a></li>
+                <li><a href="#lecturas-cliente" aria-controls="lecturas-cliente" role="tab" data-toggle="tab">Lecturas</a></li>                
+              </ul>           
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+    </nav>
+
+    <input type = "hidden" id = "nro_suministro" value = '{{inscrinro}}'>
+ 	<input type="hidden" id="nro_ficha" value='{{nro_ficha}}' >
+    <input type="hidden" id="id_provincia" value = '{{id_provincia}}'>
+    <input type="hidden" id="id_distrito" value = '{{id_distrito}}'>
+
+  	<!-- Tab panes -->
+  	<div class="tab-content" id = "tab-container">                      
+            <h4 class =  'aux'>Nro. suministro <span class = 'subrayado'>{{inscrinro}}</span> Ficha N° <span class = 'subrayado'>{{nro_ficha}}</span></h4>
+
+        	<div role="tabpanel" class="tab-pane fade in active" id="datos-basicos-ficha-cat">
+        	</div>
+
+        	<div role="tabpanel" class="tab-pane fade" id="datos-propiedad-ficha-cat">    	      		
+        	</div>
+
+        	<div role="tabpanel" class="tab-pane fade" id="conexion-agua-ficha-cat">        		
+        	</div>
+
+        	<div role="tabpanel" class="tab-pane fade" id="conexion-desague-ficha-cat">        		
+        	</div>
+
+        	<div role="tabpanel" class="tab-pane fade" id="valores-min-admisibles-ficha-cat">
+        	</div>
+
+            <div role="tabpanel" class="tab-pane fade" id="datos-complementarios-ficha-cat">
+        	</div>
+
+        	<div role="tabpanel" class="tab-pane fade" id="info-geo-loc-ficha-cat">	
+        	</div>                
+
+            <div role="tabpanel" class="tab-pane fade" id="cuenta-corriente">               
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="lecturas-cliente">                    
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="facturacion-cliente">            
+            </div>                            
+            
+            <div role="tabpanel" class="tab-pane fade in active" id="datos-basicos-sisgeco">
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade in active" id="datos-propiedad-sisgeco">
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade in active" id="datos-medidor-sisgeco">
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="conexion-agua-sisgeco">
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="conexion-desague-sisgeco">
+            </div> 
+
+            <div role="tabpanel" class="tab-pane fade" id="datos-complementarios-sisgeco">
+            </div> 
+
+            <div role="tabpanel" class="croquis fade" id="croquis-ficha-cat">               
+            </div>                  	        	
+  	</div>
+</div>
+
+<div id = "dialog-div"></div>
+
+</body>
+</html>

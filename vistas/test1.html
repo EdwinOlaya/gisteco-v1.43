@@ -1,0 +1,18 @@
+<html>
+<head>
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+    function openWindow(){
+        WREF = window.open("test2.html","test2",'width=550,height=650');
+        if(!WREF.opener){ WREF.opener = this.window; }
+    }
+    function getValue(val){
+        newVal = 5 * val;
+        return newVal;
+    }
+    var globalGetValue = this.getValue;
+</script>
+</head>
+<body>
+<a HREF="javascript:void(0);" onClick="openWindow();">Open the window</a>
+</body>
+</html>

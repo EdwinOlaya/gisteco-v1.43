@@ -1,0 +1,97 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#form-analisis-social .prov-select").change(function(){
+		var selected = $(this).val();
+			$.ajax({
+			url: "/getDistritosFromProvincia",
+		data: {id_provincia:selected},
+			success: function (data){
+				$("#form-analisis-social .dist-select").html(data);
+			}
+		});
+	});
+
+	
+	$("#analisis-social-btn").click(function(){
+		analisisSocialCall();
+	});
+});
+
+function analisisSocialCall(){
+	CATASTRO.realizarAnalisisComercialSocial($("#form-analisis-social .prov-select").val(),
+		$("#form-analisis-social .dist-select").val(),
+		$("#form-analisis-social .tipserv-select").val(),
+		$("#form-analisis-social .tipconst-select").val(),
+		$("#form-analisis-social .tipprop-select").val(),
+		$("#form-analisis-social .estpre-select").val(),
+		$("#form-analisis-social .sitcnxag-select").val()
+		);
+}
+</script>
+
+<div class = "modal-header">
+	<h4 class = "modal-title">Análisis Comercial y Social</h4>
+</div>
+<div class = "modal-body">
+	<form action = "/analisisSocialHtml" method = "POST" target = "_blank" id = "form-analisis-social">
+		<div>			
+			<label>Provincia:</label>
+			<select name = "id_provincia" class = 'prov-select'>
+				<option value = '0'>TODAS</option>
+				<option value = '1'>PIURA</option>
+				<option value = '4'>MORROPON</option>
+				<option value = '5'>PAITA</option>
+				<option value = '6'>SULLANA</option>
+				<option value = '7'>TALARA</option>
+			</select>
+			<label>Distrito:</label>
+			<select name = "id_distrito" class = 'dist-select'>
+				<option value = '0'>TODOS</option>
+			</select>
+			<label>Tipo de servicio:</label>
+			<select name = "id_tipo_servicio" class = 'tipserv-select'>
+				<option value = '0'>Elija una opción</option>
+				<option value = '1'>AGUA Y DESAGUE</option>
+				<option value = '2'>AGUA</option>
+				<option value = '3'>DESAGUE</option>
+			</select>
+			<label>Tipo de construcción</label>
+			<select name = "id_tipo_construccion" class = 'tipconst-select'>
+				<option value = '0'>Elija una opción</option>
+				<option value = '1'>SIN CONSTRUIR</option>
+				<option value = '2'>CASA O VIVIENDA</option>
+				<option value = '3'>EDIFCIO</option>
+				<option value = '4'>VIVIENDA EN EDIFICIO</option>
+			</select>
+			<label>tipo de inmueble</label>
+			<select name = "id_tipo_propiedad" class = 'tipprop-select'>
+				<option value = '0'>Elija una opción</option>
+				<option value = '1'>PRIVADA</option>
+				<option value = '2'>PUBLICA</option>
+				<option value = '3'>MIXTA</option>
+			</select>
+			<label>Estado del predio</label>
+			<select name = "id_estado_predio" class = 'estpre-select'>
+				<option value = '0'>Elija una opción</option>
+				<option value = '1'>REAL</option>
+				<option value = '2'>FACTIBLE</option>
+				<option value = '3'>POTENCIAL</option>
+				<option value = '4'>ANULADA</option>
+			</select>
+			<label>Estado del servicio</label>
+			<select name = "id_situacion_conagua" class = 'sitcnxag-select'>
+				<option value = '0'>Elija una opción</option>
+				<option value = '1'>ACTIVA</option>
+				<option value = '2'>CORTADA</option>
+				<option value = '3'>CLAUSURADA</option>
+				<option value = '4'>LEVANTADA</option>
+			</select>
+		</div>
+	</form>
+	<div class = 'msj'></div>
+</div>
+<div class = "modal-footer">
+	<input type = "button" value = "Consultar" id = "analisis-social-btn" class = 'myButton'>
+	<input type = "button" value = "Cancelar" data-dismiss = "modal" class = 'myButton'>
+</div>

@@ -1,0 +1,22 @@
+<h3 class = 'title-sec'><span class = 'subrayado'>Datos Básicos</span></h3>
+<div>	
+	<div class = 'izq'>
+		<p class = 'dato-izq'><label>Cod-Catastral:</label> <span class = 'dato'>{{id_provincia}}-{{id_distrito}}-{{id_sector}}-{{id_manzana}}-{{lote}}-{{sublote}}</span></p>		
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Ciclo:</label> <span class = 'dato'>{{ciclo}}</span></p>
+		<p class = 'dato-der'><label>Ciudad:</label> <span class = 'dato'>{{distrito}}</span></p>	
+	</div>	
+</div>
+<p><label>Dirección:</label> <span class = 'dato'>{{tipozona}} {{zona}} {{numero|filtro_vacio}} - {{manzana}} {{tipo_via}} {{via}}</span></p>
+<p><label>Dirección de reparto:</label> <span class = 'dato'>{{dir_reparto}}</span></p>
+<p><label>Nombre:</label> <span class = 'dato'>{{nombre_cliente}}</span></p>
+<div>		
+	<div class = 'izq'>
+		<p class = 'dato-izq'><label>DNI:</label> <span class = 'dato'>{{dni}}</span></p>
+		<p class = 'dato-der'><label>RUC:</label> <span class = 'dato'>{{ruc|filtro_vacio}}</span></p>
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Teléfono:</label> <span class = 'dato'>{{telefono|filtro_vacio}}</span></p>
+	</div>
+</div>

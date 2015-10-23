@@ -1,0 +1,125 @@
+<html>
+<head>
+	<title></title>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<link rel="stylesheet" type="text/css" href="javascripts/jquery-ui-1.11.4/jquery-ui.min.css"><!-- jquery UI-->
+	<script type="text/javascript" src = "javascripts/jquery-1.11.2.js"></script> <!-- jquery -->
+	<script type="text/javascript" src = "javascripts/jquery-ui-1.11.4/jquery-ui.min.js"></script><!-- jquery UI-->
+	<link rel="stylesheet" type = "text/css" href="javascripts/bootstrap-3.3.5-dist/css/bootstrap.min.css"> <!-- Boostrap -->
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<!--link rel="stylesheet" type="text/css" href="css/estilos-resultados-busqueda-cliente.css"-->
+	<script type = "text/javascript" src="javascripts/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> <!-- Boostrap -->	
+	<script type="text/javascript" src = "javascripts/validaciones.js"></script> <!-- Validaciones -->
+	<link rel="stylesheet" type="text/css" href="css/estilos-ficha-catastral-piura.css">
+
+	<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px
+	}
+	header, section, footer, aside, nav, article,div{
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+	}	
+	/*#main-container div{
+		display: inline-block;		
+	}
+	#main-container > div{
+		width: 100%;
+	}
+	#main-container .izq{		
+		width: 50%;
+		float: left;
+	}
+	#main-container .der{
+		width: 50%;
+	}	
+	#main-container .dato-izq{
+		width: 50%;	
+		float: left;	
+		display: inline;
+	}
+	#main-container .dato-der{
+		width: 50%;			
+		display: inline;
+	}
+	#main-container .full{
+		width: 100%;		
+	}*/
+	
+	@media screen and (max-width: 800px){
+		#main-container{
+			width: 100%;
+		}
+		/*#main-container div{
+			width: 100%;
+		}
+		#main-container .izq,
+		#main-container .der{
+			width: 100%;
+			clear: both;
+		}
+		#main-container .dato-izq,
+		#main-container .dato-der{
+			width: 100%;
+			clear: both;
+			display: block;
+		}*/
+	}
+	</style>
+
+	<script type="text/javascript">
+	
+	</script>
+
+</head>
+<body>
+	<div id = 'main-container'>
+		<div id = "tabla">			
+				<table class = 'table responsive-table'>
+					<thead>
+						<tr class = 'captions'>
+							<th>Num. Item</th>
+							<th>Nro. Inscripción</th>
+							<th>Nombre titular</th>
+							<th>Distrito</th>
+							<th>Tipo servicio</th>
+							<th>Estado (agua)</th>
+							<th>Consumo promedio</th>
+							<th>Deuda</th>
+							<th>Recibos adeudados</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class = 'fila'>
+							<th class = 'primero'><span>N° Item</span>1</th>
+							<th><span>N° Inscripción</span>10164337</th>
+							<th><span>Nombre</span><a onclick = 'verFichaCatastral("{{clientes[i].num_inscripcion}}")'>AQUINO VEGAS HENRY VANNER</a><a class = 'glyphicon glyphicon-globe'></a></a></th>
+							<th><span>Distrito</span>CATACAOS</th>
+							<th><span>Tipo servicio</span>AGUA Y DESAGUE</th>
+							<th><span>Estado (agua)</span>ACTIVO</th>
+							<th><span>Consumo promedio</span>2</th>
+							<th><span>Deuda</span>74.85</th>	
+							<th><span>Recibos adeudados</span>2</th>	
+						</tr>
+						<tr class = 'fila'>
+							<th class = 'primero'><span>N° Item</span>1</th>
+							<th><span>N° Inscripción</span>10164337</th>
+							<th><span>Nombre</span><a onclick = 'verFichaCatastral("{{clientes[i].num_inscripcion}}")'>AQUINO VEGAS HENRY VANNER</a></th>
+							<th><span>Distrito</span>CATACAOS</th>
+							<th><span>Tipo servicio</span>AGUA Y DESAGUE</th>
+							<th><span>Estado (agua)</span>ACTIVO</th>
+							<th><span>Consumo promedio</span>2</th>
+							<th><span>Deuda</span>74.5</th>	
+							<th><span>Recibos adeudados</span>2</th>	
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	</div>
+</body>
+</html>

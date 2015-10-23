@@ -1,0 +1,39 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var teclas_especiales = [8,13];	
+
+	$("#numero-suministro-input").keypress(function(evt){
+		
+		var key = evt.which || window.event.keyCode;
+		
+		if(teclas_especiales.indexOf(key) == -1){			
+			return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+		}
+		//se ha presionado enter
+		if (key == 13) {ubicarClienteCall();}
+	});
+
+	$("#buscar-cliente-nro-suministro-btn").click(function(){		
+		ubicarClienteCall();
+	});
+
+});
+
+function ubicarClienteCall(){
+	CATASTRO.ubicarCliente($('#numero-suministro-input').val());
+}
+</script>
+
+<div class = "modal-header">
+	<h4 class = "modal-title">Buscar Cliente</h4>
+</div>
+<div class = "modal-body">
+	<span>Ingrese número de suministro</span>
+	<input type = "text" id = "numero-suministro-input" >
+	<div class = 'msj'></div>
+</div>
+<div class = "modal-footer">
+	<input type = "button" value = "Buscar" id = "buscar-cliente-nro-suministro-btn" class = 'myButton'></input>
+	<input type = "button" value = "Cancelar" data-dismiss = "modal" class = 'myButton'>
+</div>

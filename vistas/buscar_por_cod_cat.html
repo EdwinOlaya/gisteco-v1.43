@@ -1,0 +1,64 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var teclas_especiales = [8,13];
+
+	$("#buscar-cliente-por-cod-cat-div .numeric").keypress(function(evt){
+
+		var key = evt.which || window.event.keyCode;
+
+		if(teclas_especiales.indexOf(key) == -1){			
+			return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+		}
+
+		if (key == 13) {busquedaPorCodCatCall();}
+	});
+
+	$("#buscar-cliente-cod-cat-btn").click(function(){
+		busquedaPorCodCatCall();
+	});
+
+});
+
+function busquedaPorCodCatCall(){
+	CATASTRO.busquedaPorCodCat($('#preregion-input').val(),
+			$('#prezona-input').val(),
+			$('#presector-input').val(),
+			$('#premanzana-input').val(),
+			$('#prelote-input').val()
+		);
+}
+</script>
+
+<div class = "modal-header">
+	<h4 class = "modal-title">Buscar Cliente</h4>
+</div>
+<div class = "modal-body">
+	<div id = "buscar-cliente-por-cod-cat-div">
+		<div>
+			<span>región</span>
+			<input type = "text" class = 'numeric' id = "preregion-input" value = "1">
+		</div>
+		<div>
+			<span>zona</span>
+			<input type = "text" class = 'numeric' id = "prezona-input">
+		</div>
+		<div>
+			<span>sector</span>
+			<input type = "text" class = 'numeric' id = "presector-input">
+		</div>
+		<div>	
+			<span>mz</span>
+			<input type = "text" class = 'numeric' id = "premanzana-input">
+		</div>
+		<div>
+			<span>lote</span>
+			<input type = "text" class = 'numeric' id = "prelote-input">
+		</div>
+	</div>
+	<div class = 'msj'></div>
+</div>
+<div class = "modal-footer">
+	<input type = "button" value = "Buscar" id = "buscar-cliente-cod-cat-btn" class = 'myButton'>
+	<input type = "button" value = "Cancelar" data-dismiss = "modal" class = 'myButton'>
+</div>

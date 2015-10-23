@@ -1,0 +1,21 @@
+	{% set fin = inicio+itemsxpag %}
+
+	{% if fin > datos.length %}
+		{% set fin = datos.length %}
+	{% endif %}
+
+	{%  for i in range(inicio,fin) %}
+	<tr class = 'fila'>
+		<th class = 'num-item primero'><span>N° Item</span>{{i+1}}</th>
+		<th><span>N° Factura</span><a onclick = "verDetalleFactura(this)" title = "Click para ver detalle de la factura">{{datos[i].id_recibo}}</a></th>
+		<th><span>Fecha Vencimiento</span>{{datos[i].vencimiento}}</th>
+		<th><span>Fecha Pago</span>{{datos[i].cancelado}}</th>
+		<th><span>Volumen facturado</span>{{datos[i].volumen_facturado}}</th>
+		<th><span>Monto total</span>{{datos[i].total}}</th>
+		<th><span>Monto pendiente</span>{{datos[i].total_pendiente}}</th>
+		<th><span>Estado</span>{{datos[i].estado}}</th>
+		<th><span>Tipo consumo</span>{{datos[i].tipo_consumo}}</th>
+		<th><span>Lectura anterior</span>{{datos[i].lectura_anterior}}</th>
+		<th><span>Lectura actual</span>{{datos[i].lectura_actual}}</th>
+	</tr>
+	{% endfor %}

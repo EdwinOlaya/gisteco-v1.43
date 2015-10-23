@@ -1,0 +1,50 @@
+<h3 class = 'title-sec'><span class = 'subrayado'>Datos Básicos</span></h3>
+<div>
+	<div class = 'izq'>
+		<p class = 'dato-izq'><label>Cod. Encuestador:</label> <span class = 'dato'>{{codencue}}</span></p>
+		<p class = 'dato-der'><label>Fecha:</label> <span class = 'dato'>{{fechareg}}</span></p>
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Estado conexión:</label> <span class = 'dato'>{{estado_conexion|filtro_estcnxag_catacaos}}</span></p>
+		<p class = 'dato-der'><label>Ciudad:</label> <span class = 'dato'>{{ciudad}}</span></p>
+	</div>
+</div>
+<div>
+	<div class = 'izq'>
+		<p class = 'dato-izq full'><label>Antiguo cod-Catastral:</label> <span class = 'dato'>{{preregion_ant}}-{{prezona_ant}}-{{presector_ant}}-{{premzn_ant}}-{{prelote_ant}}-{{presulote_ant}}</span></p>						
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Nuevo cod-Catastral:</label> <span class = 'dato'>{{preregion}}-{{prezona}}-{{presector}}-{{premzn}}-{{prelote}}-{{presublote}}</span></p>
+		<p class = 'dato-der'><label>Ciclo:</label> <span class = 'dato'>{{ciclo}}</span></p>						
+	</div>
+</div>
+<div>
+	<div class = 'izq'>
+		<p class = 'dato-izq'><label>Ruta lectura:</label> <span class = 'dato'>{{ruta_lectura}}</span></p>
+		<p class = 'dato-der'><label>Sector ruta lectura:</label> <span class = 'dato'>{{sec_ruta_lectura}}</span></p>
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Ruta reparto:</label> <span class = 'dato'>{{ruta_reparto}}</span></p>
+		<p class = 'dato-der'><label>Sector ruta reparto:</label> <span class = 'dato'>{{sec_ruta_reparto}}</span></p>
+	</div>
+</div>
+<div>
+	<div class = 'izq'>
+		<p class = 'dato-izq'><label>Categoría conexión:</label> <span class = 'dato'>{{categoria_conexion}}</span></p>
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Responsable:</label> <span class = 'dato'>{{responsable|filtro_responsable_catacaos}}</span></p>
+		<p class = 'dato-der'><label>Nro. Habitantes:</label> <span class = 'dato'>{{habitantes}}</span></p>
+	</div>
+</div>
+<p><label>Dirección:</label> <span class = 'dato'>{{tipo_habilitacion}} {{nombre_habilitacion}} {{nro_mzna}} {{nro_lote}} {{tipo_via}} {{nombre_via}} {{nro_municipal|filtro_vacio}} {{block|filtro_bloque}} {{piso|filtro_vacio}} {{complemento}}</span></p>
+<p><label>Nombre:</label> <span class = 'dato'>{{nombre}}</span></p>
+<div>
+	<div class = 'izq'>
+		<p class = 'dato-izq'><label>{{tipo_doc|filtro_tipdoc}}:</label> <span class = 'dato'>{{nro_doc}}</span></p>
+		<p class = 'dato-der'><label>Teléfono:</label> <span class = 'dato'>{{telefono|filtro_vacio}}</span></p>
+	</div>
+	<div class = 'der'>
+		<p class = 'dato-izq'><label>Correo:</label> <span class = 'dato'>{{email}}</span></p>		
+	</div>
+</div>

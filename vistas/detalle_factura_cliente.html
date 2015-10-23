@@ -1,0 +1,22 @@
+<div class = 'table-responsive'>
+    <table class = 'table'>
+    	<tr>
+			<th>Volumen</th>
+			<th>Concepto</th>
+			<th>Importe</th>
+		</tr>
+		{% for item in detalle_factura %}
+		<tr>			
+			<td>
+				{% if item.volumen_desague %}
+					{{item.volumen_desague}}
+				{%  else %}
+					{{item.volumen_agua}}
+				{% endif %}
+			</td>
+			<td>{{item.concepto}}</td>
+			<td>{{item.importe}}</td>				
+		</tr>
+		{% endfor %}
+    </table>
+</div>

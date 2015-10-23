@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title></title>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<script type="text/javascript" src = "javascripts/jquery-1.11.2.js"></script> <!-- jquery -->
+	<link rel="stylesheet" type = "text/css" href="javascripts/bootstrap-3.3.5-dist/css/bootstrap.min.css"> <!-- Boostrap -->
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos-resultados-busqueda-cliente.css">
+	<script type = "text/javascript" src="javascripts/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> <!-- Boostrap -->
+	<script type="text/javascript" src = "javascripts/nunjucks.js"></script><!-- Nunjucks -->
+	<script type="text/javascript" src = "javascripts/utilidades.js"></script><!-- Utilidades -->	
+	<script type="text/javascript" src = "javascripts/paginacion-funciones.js"></script> <!-- paginación -->
+	<script type="text/javascript" src="javascripts/excel/jqgridExcelExportClientSide-libs.js" ></script><!-- Para exportar a excel -->
+	<script type="text/javascript" src="javascripts/excel/excel.js"></script><!-- Para exportar a excel -->
+	<script type="text/javascript" src = "javascripts/resultados-analisis-conexion.js"></script>
+	<script type="text/javascript" src = "javascripts/ejecutorAnalisis.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){		
+
+		init({{id_prov}},{{id_dist}},{{id_diametro_conagua}},{{id_material_conagua}},{{id_situacion_conagua}},'{{fechai_conagua}}','{{fechaf_conagua}}',
+			{{id_diametro_codesa}},{{id_material_codesa}},{{id_situacion_codesa}},'{{fechai_codesa}}','{{fechaf_codesa}}');
+
+	});
+	</script>
+
+</head>
+<body>
+	<div id = "main-container">			
+
+		<div id = "desc-consulta">
+			<h3>Descripción de la consulta</h3>
+			<p>Usuarios de la provincia de: <span class = 'prov'>{{provincia}}</span></p>
+			<p>del distrito de: <span class = 'dist'>{{distrito}}</span></p>
+			{{diametro_conagua|conexion_msj(material_conagua,situacion_conagua,fechai_conagua,fechaf_conagua,0)}}
+			{{diametro_codesa|conexion_msj(material_codesa,situacion_codesa,fechai_codesa,fechaf_codesa,1)}}
+			<h4><span class = 'tot'></span> usuario(s) encontrado(s)</h4>
+		</div>		
+
+		<form action = "/verFichaCatastralSuministro" method = "POST" target = "_blank">
+			<input type="hidden" id = "nro_suministro" name="nro_suministro" value='' />
+			<div id = "tabla">			
+				<table class = 'table responsive-table'>
+					<thead>
+						<tr class = 'captions'>
+							<th>Num. Item</th>
+							<th>Nro. Inscripción</th>
+							<th>Nombre titular</th>
+							<th>Distrito</th>
+							<th>Tipo servicio</th>
+							<th>Estado (agua)</th>							
+							<th>Deuda</th>
+							<th>Recibos adeudados</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</form>
+		
+		<div id = "controles" class = 'responsive-pagination'>
+			<nav>
+				<span>Página <span class = 'pag-actual'></span> de <span class = 'tot-pags'></span>. Ir a: <input type = "text" class = 'num-pag numeric'></span>
+				<ul class="pagination">
+					<li>
+				   		<a title = "Ir a la página" onclick = "saltarALaPagina('analisis_conexion',$('#tabla'),$('#controles'))"><span class = "glyphicon glyphicon-search"></span></a>
+				   	</li>
+				   	<li>
+				   		<a title = "Ir al inicio" onclick = "verPagina(1,'analisis_conexion',$('#tabla'),$('#controles'))"><span class = "glyphicon glyphicon-step-backward"></span></a>
+				   	</li>
+				   	<li>
+				   		<a title = "Anterior" onclick = "verPaginaAntHandler('analisis_conexion',$('#tabla'),$('#controles'))"><span class = "glyphicon glyphicon-triangle-left"></span></a>
+				   	</li>
+				   	<li>
+				   		<a title = "Siguiente" onclick = "verPaginaSigHandler('analisis_conexion',$('#tabla'),$('#controles'))"><span class = "glyphicon glyphicon-triangle-right"></span></a>
+				  	</li>
+				   	<li>
+				   		<a title = "Ir al final" onclick = "verPaginaFinalHandler('analisis_conexion',$('#tabla'),$('#controles'))"><span class = "glyphicon glyphicon-step-forward"></span></a>
+				   	</li>	 
+				</ul>  	
+			</nav>
+		</div>
+		<div id = "opciones">			
+			<img src="icons/xls-download.png" class = 'img-icon' id = 'to_excel_btn'>			
+		</div>
+	</div>
+</body>
+</html>

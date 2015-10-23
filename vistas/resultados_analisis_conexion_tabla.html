@@ -1,0 +1,25 @@
+{% set fin = inicio+itemsxpag %}
+
+{% if fin > datos.length %}
+	{% set fin = datos.length %}
+{% endif %}
+
+{%  for i in range(inicio,fin) %}
+<tr class = 'fila'>
+	<th class = 'primero'><span>N° Item</span>{{i+1}}</th>
+	<th><span>N° Inscripción</span>{{datos[i].num_inscripcion}}</th>
+	<th><span>Nombre</span>
+	{% if datos[i].x %}
+		<a onclick = 'TRIGGER_ANALYSIS.verFichaCatastral("{{datos[i].num_inscripcion}}")'>{{datos[i].nombre_titular}}</a>
+		<a class = 'glyphicon glyphicon-globe' onclick = 'opener.OBSERVADOR.verCliente({{datos[i].x}},{{datos[i].y}},19)'></a>
+	{% else %}
+		{{datos[i].nombre_titular}}
+	{% endif %}
+	</th>
+	<th><span>Distrito</span>{{datos[i].distrito}}</th>
+	<th><span>Tipo servicio</span>{{datos[i].tipo_servicio}}</th>
+	<th><span>Estado (agua)</span>{{datos[i].estado_conexion_agua}}</th>
+	<th><span>Deuda</span>{{datos[i].deuda}}</th>
+	<th><span>Recibos adeudados</span>{{datos[i].cant_recibos_deuda}}</th>	
+</tr>
+{% endfor %}

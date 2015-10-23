@@ -1,0 +1,115 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	var teclas_especiales = [8,13];
+	$("#form-analisis-consumos .prov-select").change(function(){
+		var selected = $(this).val();
+			$.ajax({
+			url: "/getDistritosFromProvincia",
+		data: {id_provincia:selected},
+			success: function (data){
+				$("#form-analisis-consumos .dist-select").html(data);
+			}
+		});
+	});
+	$("#form-analisis-consumos .numeric").keypress(function(evt){		
+		var key = evt.which || window.event.keyCode;
+		if(teclas_especiales.indexOf(key) == -1){			
+			return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+		}
+	});
+	$("#form-analisis-consumos .numero-medidor").keypress(function(evt){		
+		var key = evt.which || window.event.keyCode;
+		if(teclas_especiales.indexOf(key) == -1){			
+			return DATA_PARSER.alfaNumericInputValidation(String.fromCharCode(key)); 
+		}
+	});
+
+	$("#analisis-consumos-btn").click(function(){
+		analisisConsumosCall();
+	});	
+});
+
+function analisisConsumosCall(){
+	MEDICION.realizarAnalisisDeConsumos($("#form-analisis-consumos .prov-select").val(),
+		$("#form-analisis-consumos .dist-select").val(),
+		$("#form-analisis-consumos .primera-cond-consumo-select").val(),
+		$("#form-analisis-consumos .segunda-cond-consumo-select").val(),
+		$("#form-analisis-consumos .primer-param-consumo").val(),
+		$("#form-analisis-consumos .segundo-param-consumo").val(),
+		$("#form-analisis-consumos .operador-radio:checked").val(),
+		$("#form-analisis-consumos .anio").val(),
+		$("#form-analisis-consumos .mes").val(),
+		$("#form-analisis-consumos .numero-medidor").val(),
+		$("#form-analisis-consumos input[name='filtro']:checked").val()
+		);
+}
+</script>
+
+<div class = "modal-header">
+	<h4 class = "modal-title">Análisis de consumos</h4>
+</div>
+<div class = "modal-body">
+	<form action = "/analisisConsumosHtml" method = "POST" target = "_blank" id = "form-analisis-consumos">	
+		<div>
+			<label>Provincia:</label>
+			<select name = "id_provincia" class = 'prov-select'>
+				<option value = '0'>TODAS</option>
+				<option value = '1'>PIURA</option>
+				<option value = '4'>MORROPON</option>
+				<option value = '5'>PAITA</option>
+				<option value = '6'>SULLANA</option>
+				<option value = '7'>TALARA</option>
+			</select>
+			<label>Distrito:</label>
+			<select name = "id_distrito" class = 'dist-select'>
+				<option value = '0'>TODOS</option>
+			</select>
+			<label><input type = 'radio' class = 'consumo-opt' name = 'filtro' value = '0' checked>Consumo</label>
+			<div>
+				<select name = 'primera_condicion_consumo' class = 'primera-cond-consumo-select'>
+					<option value = '0'></option>
+					<option value = '1'>Es igual a</option>
+					<option value = '2'>No es igual a</option>
+					<option value = '3'>Es mayor que</option>
+					<option value = '4'>Es mayor o igual que</option>
+					<option value = '5'>Es menor que</option>
+					<option value = '6'>Es menor o igual que</option>
+				</select>
+				<input type = 'text' name = 'primer_parametro_consumo' class = 'primer-param-consumo numeric'>
+			</div>
+			Y <input type = 'radio' name = 'operador' value = '0' class = 'operador-radio' checked> O <input type = 'radio' name = 'operador' value = '1' class = 'operador-radio'>
+			<div>
+				<select name = 'segunda_condicion_consumo' class = 'segunda-cond-consumo-select'>
+					<option value = '0'></option>
+					<option value = '1'>Es igual a</option>
+					<option value = '2'>No es igual a</option>
+					<option value = '3'>Es mayor que</option>
+					<option value = '4'>Es mayor o igual que</option>
+					<option value = '5'>Es menor que</option>
+					<option value = '6'>Es menor o igual que</option>
+				</select>
+				<input type = 'text' name = 'segundo_parametro_consumo' class = 'segundo-param-consumo numeric'>
+			</div>			
+			<div>
+				<label><input type = 'radio' class = 'medidor-opt' name = 'filtro' value = '1'>Nro. Medidor</label>
+				<input type = 'text' name = 'numero_medidor' class = 'numero-medidor'>
+			</div>
+			<label>Período</label>
+			<div class = 'periodo'>
+				<div class = 'anio-div'>
+					<label>Año</label>
+					<input type = 'text' name = 'anio' class = 'anio numeric'>
+				</div>
+				<div class = 'mes-div'>
+					<label>Mes</label>
+					<input type = 'text' name = 'mes' class = 'mes numeric'>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class = 'msj'></div>
+</div>
+<div class = "modal-footer">
+	<input type = "button" value = "Consultar" id = "analisis-consumos-btn" class = 'myButton'>
+	<input type = "button" value = "Cancelar" data-dismiss = "modal" class = 'myButton'>
+</div>

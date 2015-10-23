@@ -1,0 +1,87 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var teclas_especiales = [8,13];
+		
+		var cuenta_corriente = {{cuentaCorriente}};		
+
+		//calcular el número de páginas
+		var numpags = calcularNumPags(cuenta_corriente.length,10);
+		$("#cuenta-corriente .responsive-pagination nav .pag-actual").text(1);
+		$("#cuenta-corriente .responsive-pagination nav .tot-pags").text(numpags);
+		
+		//almacenar los resultados de la cuenta corriente
+		$("#cuenta-corriente .table").data({			
+			datos: cuenta_corriente,
+			num_pags: numpags,
+			itemsxpag: 10
+		}); 
+		
+		//renderizar la primera página
+		$("#cuenta-corriente .responsive-table tbody").html(renderizarDatosTabla(cuenta_corriente,1,10,'cuenta_corriente'));
+		$("#cuenta-corriente .responsive-pagination nav .pag-actual").text(1);
+
+		//validación de solo escritura numérica
+		$("nav .num-pag").keypress(function(evt){
+			var key = evt.which || window.event.keyCode;
+
+			if(teclas_especiales.indexOf(key) == -1){			
+				return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+			}
+
+			if(key == 13){
+				//se ha presionado enter
+				saltarALaPagina('cuenta_corriente',$('#cuenta-corriente #tabla'),$('#cuenta-corriente #controles'));
+			}			
+		});
+	});
+</script>
+
+<div id = "header">
+	<h3 class = 'title-sec'>Movimientos cuenta corriente</h3>
+</div>
+<div id = "desc-consulta">			
+	<h4><span class = 'tot'>{{total_encontrados}}</span> ítems(s) encontrado(s)</h4>
+</div>
+<div id = "tabla">			
+	<table class = 'table responsive-table'>
+		<thead>		
+			<tr class = 'captions'>
+				<th>N° Item</th>
+				<th>Fecha</th>
+				<th>Nro. Serie</th>
+				<th>Operación</th>
+				<th>Estado</th>
+				<th>Cargo</th>
+				<th>Abono</th>
+				<th>Saldo</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+</div>		
+		
+<div id = "controles" class = 'responsive-pagination'>
+	<nav>			
+		<span>Página <span class = 'pag-actual'></span> de <span class = 'tot-pags'></span>. Ir a: <input type = "text" class = 'num-pag numeric'></span>
+		<ul class="pagination">
+			<li>
+		   		<a title = "Ir a la página" onclick = "saltarALaPagina('cuenta_corriente',$('#cuenta-corriente #tabla'),$('#cuenta-corriente #controles'))"><span class = "glyphicon glyphicon-search"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Ir al inicio" onclick = "verPagina(1,'cuenta_corriente',$('#cuenta-corriente #tabla'),$('#cuenta-corriente #controles'))"><span class = "glyphicon glyphicon-step-backward"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Anterior" onclick = "verPaginaAntHandler('cuenta_corriente',$('#cuenta-corriente #tabla'),$('#cuenta-corriente #controles'))"><span class = "glyphicon glyphicon-triangle-left"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Siguiente" onclick = "verPaginaSigHandler('cuenta_corriente',$('#cuenta-corriente #tabla'),$('#cuenta-corriente #controles'))"><span class = "glyphicon glyphicon-triangle-right"></span></a>
+		  	</li>
+		   	<li>
+		   		<a title = "Ir al final" onclick = "verPaginaFinalHandler('cuenta_corriente',$('#cuenta-corriente #tabla'),$('#cuenta-corriente #controles'))"><span class = "glyphicon glyphicon-step-forward"></span></a>
+		   	</li>    	 
+		</ul>		  	
+	</nav>
+</div>

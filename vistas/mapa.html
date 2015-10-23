@@ -1,0 +1,230 @@
+<html>
+<head>
+	<title>GIS GRAU</title>
+	<meta charset = "UTF-8"></meta>
+
+	<link rel="stylesheet" type="text/css" href="javascripts/jquery-ui-1.11.4/jquery-ui.min.css"><!-- jquery UI-->
+	<script type="text/javascript" src = "javascripts/jquery-1.11.2.js"></script> <!-- jquery -->
+	<script type="text/javascript" src = "javascripts/jquery-ui-1.11.4/jquery-ui.min.js"></script><!-- jquery UI-->
+	<link rel="stylesheet" type="text/css" href="openlayers/ol.css"> <!-- ol3 javascript-->
+	<script type="text/javascript" src = "openlayers/ol.js"></script>	<!-- ol3 estilos-->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script><!-- Google Street View -->	
+	<link rel="stylesheet" type = "text/css" href="javascripts/bootstrap-3.3.5-dist/css/bootstrap.min.css"> <!-- Boostrap -->
+	<script type = "text/javascript" src="javascripts/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> <!-- Boostrap -->
+	<script type="text/javascript" src = "javascripts/nunjucks.js"></script> <!-- nunjucks -->
+	<link rel="stylesheet" type="text/css" href="css/estilos-mapa.css"> <!-- Estilos -->
+	
+	<script type="text/javascript" src = "javascripts/pintor.js"></script>
+	<script type="text/javascript" src = "javascripts/creadorEstilos.js"></script>
+	<script type="text/javascript" src = "javascripts/creadorInteracciones.js"></script>
+	<script type="text/javascript" src = "javascripts/inicializacion.js"></script>
+	<script type="text/javascript" src = "javascripts/observador.js"></script>
+	<script type="text/javascript" src = "javascripts/comunicador.js"></script>
+	<script type="text/javascript" src = "javascripts/validadorDatos.js"></script>
+	<script type="text/javascript" src = "javascripts/validadorConsultas.js"></script>
+	<script type="text/javascript" src = "javascripts/administradorCapas.js"></script>
+	<script type="text/javascript" src = "javascripts/cobranzas.js"></script>
+	<script type="text/javascript" src = "javascripts/medicion.js"></script>
+	<script type="text/javascript" src = "javascripts/catastro.js"></script>
+	<script type="text/javascript" src = "javascripts/ingenieria.js"></script>
+	<script type="text/javascript" src = "javascripts/mapa-funciones.js"></script> 
+	<script type="text/javascript" src = "javascripts/mapa.js"></script>
+	<script type="text/javascript" src = "javascripts/administradorMapa.js"></script>
+	<script type="text/javascript" src = "javascripts/templates.js"></script>	
+
+</head>
+<body>
+	<section id = "main-container">		
+		<nav id = "menu-container">
+			<a id = "ocultar-menu">Ocultar</a>
+			<ul id = "menu-principal">
+				<li id = "ver-menu-capa-base">
+					<a>Capa base</a>
+					<ul id = "menu-capa-base" class = "submenu">
+						<li>
+							<input id = "ver-calles" type = "radio" name = "capa-base" checked><span>Calles</span>
+						</li>
+						<li>
+							<input id = "ver-aerea" type = "radio" name = "capa-base"><span>Aérea</span>
+						</li>
+						<li>
+							<input id = "ver-solo-gis" type = "radio" name = "capa-base"><span>Sin capa</span>
+						</li>
+					</ul>
+				</li>
+				<li id = "ver-menu-capas-gis">
+					<a>Capas Gis</a>
+					<ul id = "menu-capas-gis" class = "submenu">
+						<li>
+							<input id = "ver-gis-distritos" type = "checkbox"><span>Distritos</span>
+						</li>
+						<li>
+							<input id = "ver-gis-sectores" type = "checkbox"><span>Sectores</span>
+						</li>
+						<li>
+							<input id = "ver-gis-urbanismo" type = "checkbox"><span>Urbanizaciones</span>
+						</li>
+						<li>
+							<input id = "ver-gis-manzanas" type = "checkbox"><span>Manzanas</span>
+						</li>
+						<li>
+							<input id = "ver-gis-predios" type = "checkbox"><span>Predios</span>
+						</li>
+						<li>
+							<input id = "ver-gis-ruta-entrega" type = "checkbox"><span>Rutas de entrega</span>
+						</li>
+						<li>
+							<input id = "ver-gis-ruta-entrega-camino" type = "checkbox"><span>Caminos rutas de entrega</span>
+						</li>
+						<li>
+							<input id = "ver-gis-ruta-lectura" type = "checkbox"><span>Rutas de lectura</span>
+						</li>
+						<li>
+							<input id = "ver-gis-ruta-lectura-camino" type = "checkbox"><span>Caminos rutas de lectura</span>
+						</li>
+						<li>
+							<input id = "ver-gis-calles" type = "checkbox"><span>Calles</span>
+						</li>
+						<li>
+							<input id = "ver-gis-red-agua" type = "checkbox"><span>Agua</span>
+						</li>
+						<li>
+							<input id = "ver-gis-red-alcantarillado" type = "checkbox"><span>Alcantarillado</span>
+						</li>
+						<li>
+							<input id = "ver-gis-accesorios" type = "checkbox"><span>Accesorios</span>
+						</li>
+						<li>
+							<input id = "ver-gis-valvulas" type = "checkbox"><span>Válvulas</span>
+						</li>
+						<li>
+							<input id = "ver-gis-buzones" type = "checkbox"><span>Buzones</span>
+						</li>
+						<li>
+							<input id = "ver-gis-pozos" type = "checkbox"><span>Pozos</span>
+						</li>
+						<li>
+							<input id = "ver-gis-reservorios" type = "checkbox"><span>Reservorios</span>
+						</li>
+						<li>
+							<input id = "ver-gis-clientes" type = "checkbox"><span>Clientes</span>
+						</li>
+						<li>
+							<input id = "ver-gis-curvas-nivel" type = "checkbox"><span>Curvas de nivel</span>
+						</li>
+					</ul>
+				</li>
+				<li id = "ver-menu-etiquetas">
+					<a>Etiquetas</a>
+					<ul id = "menu-etiquetas" class = "submenu">						
+						<li>
+							<input id = "ver-etiqueta-sectores" type = "checkbox"><span>Sectores</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-urbanismo" type = "checkbox"><span>Urbanizaciones</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-manzanas" type = "checkbox"><span>Manzanas</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-ruta-entrega" type = "checkbox"><span>Rutas de entrega</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-ruta-lectura" type = "checkbox"><span>Rutas de lectura</span>
+						</li>						
+						<li>
+							<input id = "ver-etiqueta-desague" type = "checkbox"><span>Flujo del alcantarillado</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-accesorios" type = "checkbox"><span>Accesorios</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-valvulas" type = "checkbox"><span>Válvulas</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-buzones" type = "checkbox"><span>Buzones</span>
+						</li>						
+						<li>
+							<input id = "ver-etiqueta-clientes" type = "checkbox"><span>Clientes</span>
+						</li>
+						<li>
+							<input id = "ver-etiqueta-curvas-nivel" type = "checkbox"><span>Curvas de nivel</span>
+						</li>
+					</ul>
+				</li>
+				<li id = "ver-menu-consultas">
+					<a>Consultas y Análisis</a>
+					<ul id = "menu-consultas" class = "submenu">
+						<li id = "buscar-cliente">Buscar cliente por n° suministro</li>
+						<li id = "buscar-cliente-por-cod-cat">Busquedas cod. catastral</li>
+						<li id = "analisis-de-usuarios">Análisis de usuarios</li>
+						<li id = "analisis-de-deudas">Análisis de deudas</li>
+						<li id = "analisis-por-consumo">Análisis de consumos</li>
+						<li id = "analisis-social">Análisis comercial y social</li>
+						<li id = "analisis-conexion">Análisis de la conexión</li>
+						<li id = "analisis-objetos">Análisis de objetos</li>
+					</ul>
+				</li>
+				<li id = "ver-menu-herramientas">
+					<a>Herramientas</a>
+					<ul id = "menu-herramientas" class = "submenu">						
+						<li id = "captura-mapa">Captura</li>						
+						<li id = "limpiar-mapa">Limpiar mapa</li>						
+					</ul>
+				</li>
+				<li id = "ver-menu-ayuda">
+					<a>Ayuda</a>
+					<ul id = "menu-ayuda" class = "submenu">						
+						<li id = "ver-leyenda">Leyenda</li>					
+					</ul>
+				</li>
+			</ul>						
+		</nav>
+
+		<div id = "mapa">			
+			<!-- Ventana modal -->
+			<div class = "modal fade" id = "myModal" tabindex="-1" role="dialog" >				
+				<div class = "modal-dialog modal-sm">
+					<div class = "modal-content" id = "modal-contenido">
+
+					</div>
+				</div>
+			</div>	
+		</div>
+	
+		<!-- popup -->
+		<div id = "info-popup"></div>
+
+		<div id = "info-div">
+			<label>total clientes activos</label>
+			<span id = "total-clientes-activos"></span>
+			<label>Dist. Total Red de agua</label>
+			<span id = "dt-red-agua"></span>
+			<label>Dist. Total Red de desague</label>
+			<span id = "dt-red-desague"></span>
+		</div>
+
+		<div id = "leyenda-dialog" title = "Leyenda">
+			<div><img src = 'images/leyenda-cliente-activo.png'><span>Cliente activo</span></div>
+			<div><img src = 'images/leyenda-cliente-factible.png'><span>Cliente factible</span></div>
+			<div><img src = 'images/leyenda-manzana.png'><span>Manzana</span></div>
+			<div><img src = 'images/leyenda-predio.png'><span>Predio</span></div>
+			<div><img src = 'images/leyenda-red-agua.png'><span>Red agua</span></div>
+			<div><img src = 'images/leyenda-red-alcantarillado.png'><span>Red alcantarillado</span></div>
+			<div><img src = 'images/leyenda-accesorios.png'><span>Accesorios</span></div>
+			<div><img src = 'images/leyenda-valvulas.png'><span>Válvulas</span></div>
+			<div><img src = 'images/leyenda-buzones.png'><span>Buzones</span></div>
+			<div><img src = 'images/leyenda-pozos.png'><span>Pozos</span></div>
+		</div>
+
+		<div id = "street-view">
+			<div id = "gmap"></div><div id = "pano"></div>
+		</div>
+
+		<div id = "opciones-captura"></div>
+
+		<div id = "opciones-analisis-objetos"></div>
+
+	</section>
+</body>
+</html>

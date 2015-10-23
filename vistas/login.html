@@ -1,0 +1,20 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+</head>
+<body>
+	{%if error == true%}
+		usuario o password no son validos!
+	{%endif%}
+	<form action="/autenticar" method="post">
+		<div>
+			usuario:<input type="text" id="usuario" name="usuario"/>
+		</div>
+		<div>
+			password:<input type="password" id="password" name="password"/>
+		</div>
+		<input type="submit" value="login"/>
+	</form>
+</body>
+</html>

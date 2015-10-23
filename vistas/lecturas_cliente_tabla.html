@@ -1,0 +1,21 @@
+{% set fin = inicio+itemsxpag %}
+
+{% if fin > datos.length %}
+	{% set fin = datos.length %}
+{% endif %}
+
+{%  for i in range(inicio,fin) %}
+<tr class = 'fila'>
+	<th class = 'num-item primero'><span>N° Item</span>{{i+1}}</th>
+	<th><span>Período</span>{{datos[i].periodo}}</th>
+	<th><span>Medidor</span>{{datos[i].id_medidor}}</th>
+	<th><span>Lectura actual</span>{{datos[i].lectura_actual}}</th>
+	<th><span>Lectura anterior</span>{{datos[i].lectura_anterior}}</th>
+	<th><span>Consumo agua</span>{{datos[i].consumo_agua}}</th>
+	<th><span>Consumo desague</span>{{datos[i].consumo_desague}}</th>
+	<th><span>Origen consumo</span>{{datos[i].origen_consumo}}</th>
+	<th><span>Tipo lectura</span>{{datos[i].desc_lectura}}</th>
+	<th><span>Impedimento</span>{{datos[i].desc_impedimento}}</th>
+	<th><span>Observación</span>{{datos[i].desc_observacion}}</th>
+</tr>
+{% endfor %}

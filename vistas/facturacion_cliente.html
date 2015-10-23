@@ -1,0 +1,90 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var teclas_especiales = [8,13];
+		
+		var recibos_ = {{recibos}};	
+
+		//calcula el número de páginas
+		var numpags = calcularNumPags(recibos_.length,10);
+		$("#facturacion-cliente .responsive-pagination nav .pag-actual").text(1);
+		$("#facturacion-cliente .responsive-pagination nav .tot-pags").text(numpags);
+		
+		//almacenar la data de los recibos
+		$("#facturacion-cliente .table").data({			
+			datos: recibos_,
+			num_pags: numpags,
+			itemsxpag: 10
+		});
+
+		//renderizar la primera página
+		$("#facturacion-cliente .responsive-table tbody").html(renderizarDatosTabla(recibos_,1,10,'facturacion'));
+		$("#facturacion-cliente .responsive-pagination nav .pag-actual").text(1);
+
+		//validación de solo escritura numérica
+		$("nav .num-pag").keypress(function(evt){
+			var key = evt.which || window.event.keyCode;
+
+			if(teclas_especiales.indexOf(key) == -1){			
+				return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+			}
+
+			if(key == 13){
+				//se ha presionado enter
+				saltarALaPagina('facturacion',$('#facturacion-cliente #tabla'),$('#facturacion-cliente #controles'));
+			}			
+		});
+	});
+</script>
+
+<div id = "header">
+	<h3 class = 'title-sec'>Facturación</h3>
+</div>
+<div id = "desc-consulta">			
+	<h4><span class = 'tot'>{{total_encontrados}}</span> ítems(s) encontrado(s)</h4>
+</div>
+<div id = "tabla">			
+	<table class = 'table responsive-table'>
+		<thead>		
+		   	<tr class = 'captions'>
+				<th>N°. Item</th>
+				<th>N°. Factura</th>				
+				<th>Fecha Vencimiento</th>
+				<th>Fecha Pago</th>
+				<th>Volumen Facturado</th>
+				<th>Monto total</th>
+				<th>Monto pendiente</th>				
+				<th>Estado</th>
+				<th>Tipo consumo</th>
+				<th>Lectura anterior</th>
+				<th>Lectura actual</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>		
+		
+<div id = "controles" class = 'responsive-pagination'>
+	<nav>			
+		<span>Página <span class = 'pag-actual'></span> de <span class = 'tot-pags'></span>. Ir a: <input type = "text" class = 'num-pag numeric'></span>
+		<ul class="pagination">
+			<li>
+		   		<a title = "Ir a la página" onclick = "saltarALaPagina('facturacion',$('#facturacion-cliente #tabla'),$('#facturacion-cliente #controles'))"><span class = "glyphicon glyphicon-search"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Ir al inicio" onclick = "verPagina(1,'facturacion',$('#facturacion-cliente #tabla'),$('#facturacion-cliente #controles'))"><span class = "glyphicon glyphicon-step-backward"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Anterior" onclick = "verPaginaAntHandler('facturacion',$('#facturacion-cliente #tabla'),$('#facturacion-cliente #controles'))"><span class = "glyphicon glyphicon-triangle-left"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Siguiente" onclick = "verPaginaSigHandler('facturacion',$('#facturacion-cliente #tabla'),$('#facturacion-cliente #controles'))"><span class = "glyphicon glyphicon-triangle-right"></span></a>
+		  	</li>
+		   	<li>
+		   		<a title = "Ir al final" onclick = "verPaginaFinalHandler('facturacion',$('#facturacion-cliente #tabla'),$('#facturacion-cliente #controles')0.)"><span class = "glyphicon glyphicon-step-forward"></span></a>
+		   	</li>    	 
+		</ul>		  	
+	</nav>
+</div>

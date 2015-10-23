@@ -1,0 +1,64 @@
+	<h3 class = 'title-sec'><span class = 'subrayado'>Croquis</span></h3>
+	<canvas id = "myCanvas"></canvas>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		canvas.width = $("#myCanvas").width();
+		canvas.height = $("#myCanvas").height();				
+		var width = canvas.width;
+		var height = canvas.height;
+		var context = canvas.getContext("2d");				
+
+		//rectángulo base
+		/*context.beginPath();
+		context.rect(0,0,canvas.width,canvas.height);
+		context.fillStyle = "#CCC";
+		context.fill();*/
+
+		//parametros del dibujo
+		xi = width*0.25;//coord x de la esquina sup izq del predio
+		yi = height*0.18;//coord y de la esquina sup izq del predio
+		predioWidth = 0.5*width;//ancho del predio
+		predioHeight = 0.64*height;//alto del predio
+		margin = 10;//margin del predio respecto de las calles
+
+		//rectángulo - predio
+		context.beginPath();
+		context.rect(xi,yi,predioWidth,predioHeight);
+		context.fillStyle = 'yellow';
+		context.fill();
+		context.lineWidth = 1;
+		context.stroke();				
+				
+		//Texto - calle 1
+		context.beginPath();
+		context.translate(xi-margin,yi+0.5*predioHeight);	
+		context.rotate(-Math.PI/2);
+		context.font = '20px Calibri';
+		context.fillStyle = 'black';
+		context.textAlign = 'center';			
+		context.fillText('{{calle1}}',0,0);
+
+		//reset transform
+		context.setTransform(1, 0, 0, 1, 0, 0);
+
+		//Texto - calle 2
+		context.beginPath();							
+		context.fillText('{{calle2}}',xi+0.5*predioWidth,yi-margin);				
+				
+		//Texto - calle 3
+		context.beginPath();
+		context.translate(xi+predioWidth+margin,yi+0.5*predioHeight);	
+		context.rotate(Math.PI/2);
+		context.font = '20px Calibri';
+		context.fillStyle = 'black';
+		context.textAlign = 'center';			
+		context.fillText('{{calle3}}',0,0);
+
+		//reset transform
+		context.setTransform(1, 0, 0, 1, 0, 0);
+
+		//Texto - calle 4
+		context.beginPath();							
+		context.fillText('{{calle4}}',xi+0.5*predioWidth,yi+predioHeight+2*margin);
+
+		</script>

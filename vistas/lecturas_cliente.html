@@ -1,0 +1,95 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var teclas_especiales = [8,13];
+		
+		var lecturas_ = {{lecturas}};	
+
+		//calcula el número de páginas
+		var numpags = calcularNumPags(lecturas_.length,10);
+		$("#lecturas-cliente .responsive-pagination nav .pag-actual").text(1);
+		$("#lecturas-cliente .responsive-pagination nav .tot-pags").text(numpags);
+		
+		//almacenar la información de las lecturas
+		$("#lecturas-cliente .table").data({			
+			datos: lecturas_,
+			num_pags: numpags,
+			itemsxpag: 10
+		});
+		
+		//renderizar la primera página
+		$("#lecturas-cliente .responsive-table tbody").html(renderizarDatosTabla(lecturas_,1,10,'lecturas'));
+		$("#lecturas-cliente .responsive-pagination nav .pag-actual").text(1);
+
+		//validación de escritura numérica
+		$("nav .num-pag").keypress(function(evt){
+			var key = evt.which || window.event.keyCode;
+
+			if(teclas_especiales.indexOf(key) == -1){			
+				return DATA_PARSER.numericInputValidation(String.fromCharCode(key)); 
+			}
+
+			if(key == 13){
+				//se ha presionado enter
+				saltarALaPagina('lecturas',$('#lecturas-cliente #tabla'),$('#lecturas-cliente #controles'));
+			}			
+		});
+
+	});
+</script>
+
+<div id = "header">
+	<h3 class = 'title-sec'>Lecturas</h3>
+</div>
+<div id = "desc-consulta">			
+	<h4><span class = 'tot'>{{total_encontrados}}</span> ítems(s) encontrado(s)</h4>
+</div>
+<div id = "tabla">			
+	<table class = 'table responsive-table'>
+		<thead>		
+		   	<tr class = 'captions'>
+				<th>N°. Item</th>
+				<th>Período</th>
+				<th>Medidor</th>
+				<th>Lectura actual</th>
+				<th>Lectura anterior</th>
+				<th>Consumo agua</th>
+				<th>Consumo desague</th>
+				<th>Origen consumo</th>
+				<th>Tipo lectura</th>
+				<th>Impedimiento</th>
+				<th>Observación</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+</div>		
+		
+<div id = 'controles' class = 'responsive-pagination'>
+	<nav>			
+		<span>Página <span class = 'pag-actual'></span> de <span class = 'tot-pags'></span>. Ir a: <input type = "text" class = 'num-pag numeric'></span>
+		<ul class="pagination">
+			<li>
+		   		<a title = "Ir a la página" onclick = "saltarALaPagina('lecturas',$('#lecturas-cliente #tabla'),$('#lecturas-cliente #controles'))"><span class = "glyphicon glyphicon-search"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Ir al inicio" onclick = "verPagina(1,'lecturas',$('#lecturas-cliente #tabla'),$('#lecturas-cliente #controles'))"><span class = "glyphicon glyphicon-step-backward"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Anterior" onclick = "verPaginaAntHandler('lecturas',$('#lecturas-cliente #tabla'),$('#lecturas-cliente #controles'))"><span class = "glyphicon glyphicon-triangle-left"></span></a>
+		   	</li>
+		   	<li>
+		   		<a title = "Siguiente" onclick = "verPaginaSigHandler('lecturas',$('#lecturas-cliente #tabla'),$('#lecturas-cliente #controles'))"><span class = "glyphicon glyphicon-triangle-right"></span></a>
+		  	</li>
+		   	<li>
+		   		<a title = "Ir al final" onclick = "verPaginaFinalHandler('lecturas',$('#lecturas-cliente #tabla'),$('#lecturas-cliente #controles'))"><span class = "glyphicon glyphicon-step-forward"></span></a>
+		   	</li>    	 
+		</ul>		  	
+	</nav>
+</div>
+
+<div class = "opciones">			
+	<img src="icons/chart.png" onclick = 'graficarLecturasConsumos()'>		
+</div>

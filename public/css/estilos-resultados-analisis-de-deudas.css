@@ -1,0 +1,47 @@
+*{
+	margin: 0px;
+	padding: 0px
+}
+header, section, footer, aside, nav, article,div{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+}
+#main-container{
+	width: 80%;
+	margin: 0px auto;
+}
+#tabla,#header,#desc-consulta,#estadistica,#controles{
+	width: 100%;
+	display: inline-block;
+	padding: 5px 0px;
+}
+
+/*Estilos para la descripción de consulta*/
+#desc-consulta p{
+	margin: 0px;
+}
+#desc-consulta p span{
+	color: #0080FF;
+}
+/*Estilos de los botones*/
+#opciones{
+	text-align: center;
+	padding: 10px 0px;
+}
+
+/*Para lograr un diseño responsive*/
+/*Dispositivos con una resolucion menor a 800px x N*/
+@media screen and (max-width: 800px) {
+  	#main-container{
+   		width: 100%;
+   		padding: 5px;
+   	}    	   
+}
+
+/*Otros*/
+.img-icon{
+	cursor: pointer;
+}

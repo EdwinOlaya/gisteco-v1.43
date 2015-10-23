@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src = "javascripts/jquery-1.11.2.js"></script> <!-- jquery -->
+	<!--script type="text/javascript" src = "javascripts/charts/chart/Chart.js"></script-->
+	<script type="text/javascript" src = "javascripts/charts/highcharts/highcharts.js"></script>
+	<script type="text/javascript" src = "javascripts/charts/highcharts/exporting.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0px;
+		margin: 0px;
+	}
+	#myChart{		
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+	<script type="text/javascript">
+	var lineChart = null;
+
+	$(document).ready(function(){
+		opener.darFormatoDataParaGraficoLecturasConsumos(10);
+		construirGrafica();	
+	});	
+
+	function construirGrafica(){
+		Highcharts.setOptions({
+			lang: {
+				downloadJPEG: "Descargar como JPEG",
+				downloadPDF: "Descargar como PDF",
+				downloadPNG: "Descargar como PNG",
+				downloadSVG: "Descargar como SVG",
+				printChart: "Imprimir"
+			}
+		});
+
+		$('#myChart').highcharts({
+	        title: {
+	            text: 'Nro. Suministro: '+opener.document.getElementById("nro_suministro").value,
+	            x: -20 //center
+	        },
+	        xAxis: {
+	            categories: opener.lectura_consumos_para_grafica.labels
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'm3'
+	            },
+	            plotLines: [{
+	                value: 0,
+	                width: 1,
+	                color: '#808080'
+	            }]
+	        },
+	        plotOptions: {
+	            line: {
+	                dataLabels: {
+	                    enabled: true
+	                }	                
+	            }
+	        },
+	        tooltip: {
+	            valueSuffix: 'm3'
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'middle',
+	            borderWidth: 0
+	        },
+	        series: opener.lectura_consumos_para_grafica.series
+	    });
+	}
+	</script>
+</head>
+<body>	
+	<div id = "myChart"></div>
+</body>
+</html>

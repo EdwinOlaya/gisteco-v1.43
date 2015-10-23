@@ -1,0 +1,23 @@
+<span id = "cerrar" class = "glyphicon glyphicon-remove" onclick = "cerrarPopup()"></span>
+<div class = 'table-responsive'>
+    <table class = 'table'>
+    	<tr>
+			<th>Nro. Ficha</th>
+			<th>Suministro</th>			
+			<th>Opciones</th>
+		</tr>
+		<tr>
+			<td>{{nro_ficha}}</td>
+			<td>{{suministro}}</td>
+			<td>
+				<form action = "/verFichaCatastral" method = "POST" target = "_blank" >
+					<input type="hidden" name="nro_ficha" value='{{nro_ficha}}' />
+					<input type="hidden" name="id_provincia" value = '{{id_prov}}'>
+					<input type="hidden" name="id_distrito" value = '{{id_dist}}'>
+					<input type = 'submit' value = 'Ver Ficha' class = 'myButton'>
+					<input type = 'button' value = 'Ver en Street View' class = 'myButton' onclick = "verEnStreetViewHandler({{x}},{{y}})">					
+				</form>					
+			</td>
+		</tr>
+    </table>
+</div>

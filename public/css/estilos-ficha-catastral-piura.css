@@ -1,0 +1,229 @@
+*{
+	margin: 0px;
+	padding: 0px;	
+}
+
+header, section, footer, aside, nav, article,div{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+}
+header > img{
+	width: 140px;
+}
+header{
+	padding: 10px;
+}
+#main-container{
+	width: 80%;
+	margin: 0px auto;
+	background: #fff;
+}
+.tab-content{
+	padding: 10px;
+}
+.tab-content > div label{
+	color: #5D5948;	
+	font-weight: normal;
+}
+#clienteTabs{
+	margin: 0px;
+}
+.right{
+	text-align: right;
+}
+
+.dato{
+	color: #0D6313;
+	font-weight: bold;
+}
+.title-sec{
+	text-align: center;
+	color: #2c5184;
+	padding-bottom: 20px;	
+}
+/*.aux{
+	color: #2c5184;
+}*/
+.subrayado{
+	border-bottom: 1px;
+}
+
+/*ESTILOS DEL MENU*/
+.navbar-default {
+  background-color: #4679bd;
+  border-color: #2C61A6; }
+  .navbar-default .navbar-brand {
+    color: #fff; }
+    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+      color: #BED1EB; }
+  .navbar-default .navbar-nav > li > a {
+    color: #fff; }
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+      color: #BED1EB; }
+  .navbar-default .navbar-nav .active > a, .navbar-default .navbar-nav .active > a:hover, .navbar-default .navbar-nav .active > a:focus {
+    color: #BED1EB;
+    background-color: #2C61A6; }
+  .navbar-default .navbar-nav .open > a, .navbar-default .navbar-nav .open > a:hover, .navbar-default .navbar-nav .open > a:focus {
+    color: #BED1EB;
+    background-color: #2C61A6; }
+    .navbar-default .navbar-nav .open > a .caret, .navbar-default .navbar-nav .open > a:hover .caret, .navbar-default .navbar-nav .open > a:focus .caret {
+      border-top-color: #BED1EB;
+      border-bottom-color: #BED1EB; }
+  .navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff; }
+  .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #BED1EB;
+    border-bottom-color: #BED1EB; }
+  .navbar-default .navbar-toggle {
+    border-color: #2C61A6; }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+      background-color: #2C61A6; }
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: #fff; }
+/*FIN ESTILOS DEL MENU*/
+
+/*ESTILOS FICHA CATASTRAL DATOS BASICOS*/
+
+#tab-container > div div{
+	display: inline-block;		
+}
+#tab-container > div > div{
+	width: 100%;
+}
+#tab-container > div .izq{		
+	width: 50%;
+	float: left;
+}
+#tab-container > div .der{
+	width: 50%;
+}	
+#tab-container > div .dato-izq{
+	width: 50%;	
+	float: left;	
+	display: inline;
+}
+#tab-container > div .dato-der{
+	width: 50%;			
+	display: inline;
+}
+#tab-container > div .full{
+	width: 100%;		
+}
+
+/*FIN ESTILOS DATOS COMPLEMENTARIOS*/
+
+/*ESTILOS INFORMACION GEOGRAFICA*/
+
+#info-geo-loc-ficha-cat div{		
+	display: inline-block;
+}
+#info-geo-loc-ficha-cat > div{
+	width: 100%;			
+}
+#info-geo-loc-ficha-cat .izq{
+	float: left;
+	width: 50%;		
+}
+#info-geo-loc-ficha-cat .der{
+	width: 50%;	
+}
+#info-geo-loc-ficha-cat .nivel-presion,
+#info-geo-loc-ficha-cat .dist-1{
+	width: 	50%;
+	float: left;
+	display: inline;
+	padding-right: 10px;
+}	
+#info-geo-loc-ficha-cat .coords,
+#info-geo-loc-ficha-cat .dist-2{
+	float: right;
+	width: 50%;
+	display: inline;
+}
+
+@media screen and (max-width: 800px){
+	#main-container{
+   		width: 100%;
+   	}
+	.title-sec{
+		text-align: left;
+	}
+
+	#tab-container > div div{
+		width: 100%;
+	}
+	#tab-container > div .izq,
+	#tab-container > div .der{
+		width: 100%;
+		clear: both;
+	}
+	#tab-container > div .dato-izq,
+	#tab-container > div .dato-der{
+		width: 100%;
+		clear: both;
+		display: block;
+	}
+
+	/*INICIO ESTILOS INFORMACIÓN GEOGRÁFICA*/
+	#info-geo-loc-ficha-cat div{
+		width: 100%;
+	}
+	#info-geo-loc-ficha-cat .izq,
+	#info-geo-loc-ficha-cat .der{
+		width: 100%;
+		clear: both;
+	}	
+	#info-geo-loc-ficha-cat .nivel-presion,
+	#info-geo-loc-ficha-cat .dist-1{
+		width: 100%;
+		clear: both;
+		display: block;
+		padding: 0px;
+	}		
+	#info-geo-loc-ficha-cat .coords,
+	#info-geo-loc-ficha-cat .dist-2{
+		display: block;
+		width: 100%;			
+	}
+	#info-geo-loc-ficha-cat .coords{
+		padding-bottom:10px;
+	}
+	/*FIN ESTILOS INFORMACION GEOGRAFICA*/	
+
+	/*INICIO ESTILOS DEL MENU*/
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff; }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: #BED1EB;
+      background-color: #2C61A6; }
+	/*FIN ESTILOS DEL MENÚ*/
+}
+
+
+/*ANTIGUOS*/
+
+#myCanvas{
+	width: 250px;
+	height: 300px;
+}
+
+/* OTROS */
+.num-item{
+	color:#337ab7;
+}
+
+.info-msj{
+	text-align: center;
+	color: #f00;
+}
+.opciones{
+	text-align: center;	
+	padding: 20px 0px;
+}
+.opciones img{
+	cursor: pointer;
+}
